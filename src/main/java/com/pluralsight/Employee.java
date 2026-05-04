@@ -23,49 +23,35 @@ public class Employee {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getDepartment() {
         return department;
-    }
-
-    public void setDepartment(String department) {
-        this.department = department;
     }
 
     public double getPayRate() {
         return payRate;
     }
 
-    public void setPayRate(double payRate) {
-        this.payRate = payRate;
-    }
-
     public double getHoursWorked() {
         return hoursWorked;
     }
 
-    public void setHoursWorked(double hoursWorked) {
-        this.hoursWorked = hoursWorked;
+
+    public double getTotalPay() {
+        return (getPayRate() * payRate) + (getOvertimeHours() * payRate * 1.5);
     }
 
-    public double getTotalPay(){
-        return getPayRate() * hoursWorked;
-    }
-
-    public double getRegularHours(){
-        if (hoursWorked >= 40){
-            return getHoursWorked();
+    public double getRegularHours() {
+        if (hoursWorked <= 40) {
+            return hoursWorked;
         }
-        return getRegularHours();
+        return 40;
     }
 
-    public double getOvertimeHours(){
-        if (hoursWorked <= 40){
-            return getOvertimeHours();
+    public double getOvertimeHours() {
+        if (hoursWorked > 40) {
+            return hoursWorked - 40;
+        } else {
+            return 0;
         }
-        return 0;
     }
 }
